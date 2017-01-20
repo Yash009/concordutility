@@ -216,7 +216,7 @@
 
 
 <main>
-    <input value="6500" step="500" min="5000" max="100000" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;" type="range">
+    <input value="5000" step="1" min="5000" max="100000" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;" type="range">
 
 
     <div class="range">
@@ -230,10 +230,11 @@
         <table class="concordtable">
         <tr>
             <td>Comission Amount </td>
-            <td><div class="current_value"></div></td>
+            <td>$ <input type="number" id="js-amount-input">
+            </td>
         </tr>
         <tr>
-            <td>Agent Portion of comission at closing    </td> 
+            <td>Agent Portion of comission at closing</td> 
             <td><div class="age_amt"></div></td>
         </tr>
         <tr>
@@ -446,6 +447,8 @@
     });
     var $element = $('input[type="range"]');
     var $handle;
+    
+var $amount = $('#js-amount-input');
     $element.rangeslider({
         polyfill: false,
         onInit: function () {
@@ -454,20 +457,28 @@
         }
     }).on('input', function () {
         updateHandle($handle[0], this.value);
+       // $amount[0].value = this.value;
     });
+    $amount.on('input', function() {
+        var temp = parseInt(this.value);
+        if((temp>=5000) && (temp <=100000) ){
+            console.log(temp);
+  $element.val(this.value).change();
+        }
+});
     function updateHandle(el, val) {
         el.textContent = ' ' + '$' + val + ' ';
         A=val;
-        $('.current_value').html("$"+A);
+        $('#js-amount-input').val(A);
         var B=C=D=E = 0;
         
-        B = 0.2*A;
+        B = Math.ceil(0.2*A);
         $(".age_amt").html("$"+B);
         
-        C = (A*0.8)* (.95);
+        C = Math.ceil((A*0.8)* (.95));
         $(".adv_amt").html("$"+C);
         
-        D = (A*0.8)-C;
+        D = Math.ceil((A*0.8)-C);
         $(".dis_amt").html("$"+D);
         
         E=A-D;
@@ -480,6 +491,8 @@
         
     }
     $(document).ready(function () {
+       
+        
         $('input').on('change', function () {
             $('#helper').fadeOut('slow');
         });
