@@ -450,22 +450,25 @@
     });
     var $element = $('input[type="range"]');
     var $handle;
+    
     $element.rangeslider({
         polyfill: false,
         onInit: function () {
             $handle = $('.rangeslider__handle', this.$range);
             
-            updateHandle($handle[0], (this.value));
+            updateHandle($handle[0], (this.value),this.value);
         }
     }).on('input', function () {
-        updateHandle($handle[0], (this.value));
+        updateHandle($handle[0], addCommas(this.value),this.value);
     });
-    function updateHandle(el, val) {
-        el.textContent = ' ' + '$' + val + ' ';
-        A=val;
+    function updateHandle(el, val,val2) {
+        el.textContent = ' ' + '$' + addCommas(val) + ' ';
+        
+        A= val2;
+
+        console.log(val);
         $('.current_value').html("$"+addCommas(A));
         var B=C=D=E = 0;
-        
         B = 0.2*A;
         $(".age_amt").html("$"+ addCommas(B));
         
