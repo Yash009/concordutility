@@ -17,22 +17,31 @@
             margin: 8rem auto 0;
         }
 
-        h1 {
+        h1{
             font-weight: 800;
             font-family: "Open Sans", sans-serif;
             color: #46b7d5;
         }
-
+        .mainheading{
+            font-weight: 700;
+            font-family: 'AktivGrotesk',!important;
+            color: #4d955b;
+            font-size: 53px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+               
+        
         .min {
             padding-top: 10px;
             padding-left: 10px;
-            color: #cccccc;
+            color: #000;
         }
 
         .max {
             padding-top: 10px;
             padding-right: 10px;
-            color: #cccccc;
+            color: #000;
         }
 
         #helper {
@@ -163,10 +172,10 @@
             box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
         }
         .concordtable{
-            background: #e6e6e6;
+            background: #f9f9fc;
             margin-left: auto;
             margin-right: auto;
-            font-family: Aktiv Grotesk;
+            font-family: 'AktivGrotesk',!important;;
             font-size: 14px;
             border-spacing: 30px 10px;
             border-collapse: inherit;
@@ -181,6 +190,13 @@
             border-top-color: rgb(0, 0, 0);
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+        
+        #assumptntxt{
+            font-family: 'Helvetica Light';
+            font-style: oblique;
+            color: #5e625e;
+            font-size: 20px;
         }
         
 
@@ -215,8 +231,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/fonts/fontawesome-webfont.woff">
 
 
+
+
 <main>
-    <input value="6500" step="250" min="5000" max="100000" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;" type="range">
+    <h1 class="mainheading">Commission Advance Estimator</h1>
+    <input value="5000" step="250" min="5000" max="100000" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0;" type="range">
 
 
     <div class="range">
@@ -249,7 +268,12 @@
             <td><b>Agent's Net Commission with Advance</b></td>
             <td><b><div class="net_amt"></div></b></td>
         </tr>
-        </table>
+        </table><br><br><br>
+        <section id="assumptntxt">
+            • Above example is based on a 30 day closing<br>
+            • Assumed advance of 80% of Agent’s Commission<br>
+            • We are paid at closing - there is no upfront cost to you<br>
+        </section>
         
     </div>
 </main>
