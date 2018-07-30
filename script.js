@@ -1,8 +1,3 @@
-/**
- * Created by yasho on 9/28/2017.
- */
-
-<script>
 function addCommas(intNum) {
     return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
 }
@@ -208,20 +203,37 @@ function updateHandle(el, val,val2) {
     el.textContent = ' ' + '$' + addCommas(val) + ' ';
 
     A= val2;
-
     $('.current_value').html("$"+addCommas(A));
     var B=C=D=E = 0;
-    B = 0.2*A;
-    $(".age_amt").html("$"+ addCommas(B));
+    if (A>8000) {
+        B = 0.2*A;
+        $(".age_amt").html("$"+ addCommas(B));
 
-    C = (A*0.8)* (.95);
-    $(".adv_amt").html("$"+addCommas(C));
+        C = (A*0.8)* (.95);
+        $(".adv_amt").html("$"+addCommas(C));
 
-    D = (A*0.8)-C;
-    $(".dis_amt").html("$"+addCommas(D));
+        D = (A*0.8)*0.05;
+        $(".dis_amt").html("$"+addCommas(D));
 
-    E=A-D;
-    $(".net_amt").html("$"+addCommas(E));
+        E=B+C;
+        $(".net_amt").html("$"+addCommas(E));
+    }
+    else if (A<=8000) {
+        $('.current_value').html("$"+addCommas(A));
+        var B=C=D=E = 0;
+        B = 0.2*A;
+        $(".age_amt").html("$"+ addCommas(B));
+
+        C = (A*0.8) -325;
+        $(".adv_amt").html("$"+addCommas(C));
+
+        D = 325;
+        $(".dis_amt").html("$"+addCommas(D));
+
+        E=B+C;
+        $(".net_amt").html("$"+addCommas(E));
+    }
+
 }
 $(document).ready(function () {
     $('input').on('change', function () {
@@ -231,14 +243,6 @@ $(document).ready(function () {
     $('#promo-link').on('click', function () {
         $('#js-promo-box').slideToggle();
         return false;
-
     });
 });
 //# sourceURL=pen.js
-</script>
-
-
-
-
-
-
